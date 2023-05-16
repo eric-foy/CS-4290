@@ -26,11 +26,13 @@ def invert(a, n):
         z = egcd(a, n, 1, 0, 0, 1)
         z = z % n
         if (AinverseZ):
-            print(z)
+            return z
         else:
             print("a not inverse to z.")
+            return -1
     else:
         print("not invertable")
+        return -1
 
 if __name__ == "__main__":
-    invert(int(sys.argv[1]), int(sys.argv[2]))
+    print(invert(int(sys.argv[1]), int(sys.argv[2])))

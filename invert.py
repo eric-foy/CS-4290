@@ -21,9 +21,7 @@ def egcd(a, b, s0, s1, t0, t1):
 def AinverseZ(a, z, n):
     return (a*z % n == 1)
 
-if __name__ == "__main__":
-    a = int(sys.argv[1])
-    n = int(sys.argv[2])
+def invert(a, n):
     if (invertable.isInvertable(a, n)):
         z = egcd(a, n, 1, 0, 0, 1)
         z = z % n
@@ -33,3 +31,6 @@ if __name__ == "__main__":
             print("a not inverse to z.")
     else:
         print("not invertable")
+
+if __name__ == "__main__":
+    invert(int(sys.argv[1]), int(sys.argv[2]))

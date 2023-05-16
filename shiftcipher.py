@@ -47,5 +47,3 @@ def shiftcipher(msg, key):
 
 if __name__ == "__main__":
     shiftcipher(sys.argv[1], int(sys.argv[2]))
-
-#TODO decrypt shiftcipher function

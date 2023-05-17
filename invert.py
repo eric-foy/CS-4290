@@ -23,6 +23,7 @@ def AinverseZ(a, z, n):
 
 def invert(a, n):
     if (invertable.isInvertable(a, n)):
+        a = a % n
         z = egcd(a, n, 1, 0, 0, 1)
         z = z % n
         if (AinverseZ):

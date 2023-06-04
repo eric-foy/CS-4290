@@ -1,4 +1,5 @@
 import sys
+import matrix_smprint
 
 def identity(n):
     a = []
@@ -18,4 +19,5 @@ def identity(n):
 
 
 if __name__ == "__main__":
-    print(identity(int(sys.argv[1])))
+    m = identity(int(sys.argv[1]))
+    print(matrix_smprint.smprint(m))

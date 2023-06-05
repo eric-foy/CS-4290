@@ -9,7 +9,7 @@ chinese remainder theorem check e.g. 40(1-1/2)(1-1/5)
 matrix multiply
 check if matrix is invertible
 minors of square matrices
-determinant of a sqare matrix
+determinant of a sqare matrix !
 matrix A is invertible iff det(A) is invertible
 adjoint matrix of a square matrix
 for any square matrix over any number system adj(M).M = M.adj(M)=...

@@ -21,9 +21,12 @@ def determinant(A):
     return x
 
 if __name__ == "__main__":
-    # 2 by 2
+    # 2 by 2 should be -2
     A = [[1, 2], [3, 4]]
     print(determinant(A))
-    # 3 by 3
+    # 3 by 3 should be -306
     A = [[6, 1, 1], [4, -2, 5], [2, 8, 7]]
+    print(determinant(A))
+    # 4 by 4 should be -270
+    A = [[6, 1, 1, 5], [4, -2, 5, 1], [2, 8, 7, 7], [3, 4, 1, 6]]
     print(determinant(A))

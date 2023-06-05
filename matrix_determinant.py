@@ -18,6 +18,9 @@ def determinant(A, Zn):
         x %= Zn
     return x
 
+def det(A, Zn):
+    return determinant(A, Zn)
+
 if __name__ == "__main__":
     # 2 by 2 should be 10-2
     A = [[1, 2], [3, 4]]

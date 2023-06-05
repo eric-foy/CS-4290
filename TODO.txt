@@ -6,8 +6,6 @@ number of keys in affine cipher is |Zn||Zn*|
 all inverts in Zn should check with CRT. Euler function
 chinese remainder theorem check e.g. 40(1-1/2)(1-1/5)
 
-matrix multiply
-check if matrix is invertible
 minors of square matrices
 determinant of a sqare matrix !
 matrix A is invertible iff det(A) is invertible

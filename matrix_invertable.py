@@ -4,9 +4,9 @@ import matrix_determinant as md
 import invertable as iZn
 
 # see if m and n are inverts of each other
-def invertable(m, n):
-    a = mm.multiply(m, n)
-    b = mm.multiply(n, m)
+def invertable(m, n, Zn):
+    a = mm.multiply(m, n, Zn)
+    b = mm.multiply(n, m, Zn)
     i = mi.identity(len(m))
     if (a == b and a == i):
         return True
@@ -15,18 +15,19 @@ def invertable(m, n):
 # A is invertable iff det(A) is invertable in Zn
 def invertableb(A, Zn):
     d = md.determinant(A, Zn)
-    print(d)
     if (iZn.isInvertable(d, Zn)):
         return True
-    return False
+    else:
+        print(d, "not invertable in", Zn)
+        return False
 
 if __name__ == "__main__":
     a = [[4, -2, 3], [8, -3, 5], [7, -2, 4]]
     b = [[-2, 2, -1], [3, -5, 4], [5, -6, 4]]
-    print(invertable(a, b))
+    print(invertable(a, b, 100))
     c = [[1, 1], [0, 1]]
     d = [[1, -1], [0, 1]]
-    print(invertable(c, d))
+    print(invertable(c, d, 100))
 
     e = [[1, 1], [0, 1]]
     print(invertableb(e, 5))

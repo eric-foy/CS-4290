@@ -1,7 +1,7 @@
 import sys
 import matrix_smprint
 
-def multiply(m, n):
+def multiply(m, n, Zn):
     # no jagged matrices
     a = len(m[0])
     for i in m:
@@ -27,13 +27,17 @@ def multiply(m, n):
             mx = 0
             for mi in range(0, len(n)):
                 mx += m[i][mi]*n[mi][j]
+            mx %= Zn
             y += [mx]
         x += [y]
     return x
 
+def mul(A, B, Zn):
+    return multiply(A, B, Zn)
+
 if __name__ == "__main__":
     a = [[1, 2, 3], [4, 5, 6]]
     b = [[7, 8], [9, 10], [11, 12]]
-    m = multiply(a, b)
+    m = multiply(a, b, 100)
     #m = multiply(int(sys.argv[1]), int(sys.argv[2])
     print(matrix_smprint.smprint(m))

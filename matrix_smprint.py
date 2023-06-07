@@ -5,3 +5,6 @@ def smprint(m):
             o += str(m[i][j]) + ' '
         o += '\n'
     return o
+
+def out(m):
+    print(smprint(m))

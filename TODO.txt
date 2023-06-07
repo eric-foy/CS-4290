@@ -7,7 +7,6 @@ all inverts in Zn should check with CRT. Euler function
 chinese remainder theorem check e.g. 40(1-1/2)(1-1/5)
 
 Hill cipher !
-for any square matrix over any number system adj(M).M = M.adj(M)=...
 
 zero matrix
 transpose matrix

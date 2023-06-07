@@ -15,7 +15,7 @@ def invertable(m, n, Zn):
 # A is invertable iff det(A) is invertable in Zn
 def invertableb(A, Zn):
     d = md.determinant(A, Zn)
-    if (iZn.isInvertable(d, Zn)):
+    if (d != 0 and iZn.isInvertable(d, Zn)):
         return True
     else:
         print(d, "not invertable in", Zn)

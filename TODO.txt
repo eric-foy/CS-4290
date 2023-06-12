@@ -6,7 +6,7 @@ number of keys in affine cipher is |Zn||Zn*|
 all inverts in Zn should check with CRT. Euler function
 chinese remainder theorem check e.g. 40(1-1/2)(1-1/5)
 
-decrypt Hill ciphe
+decrypt Hill cipher
 
 zero matrix
 transpose matrix

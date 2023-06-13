@@ -16,4 +16,3 @@ auto key cipher
 stream cipher
 product cipher
 affine hill cipher
-perm-cipher, hill cipher

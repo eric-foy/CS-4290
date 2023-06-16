@@ -9,7 +9,6 @@ chinese remainder theorem check e.g. 40(1-1/2)(1-1/5)
 decrypt Hill cipher
 
 zero matrix
-transpose matrix
 vigenere cipher
 substitiution cipher
 auto key cipher

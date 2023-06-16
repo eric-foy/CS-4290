@@ -15,4 +15,3 @@ substitiution cipher
 auto key cipher
 stream cipher
 product cipher
-affine hill cipher

@@ -75,5 +75,6 @@ if __name__ == "__main__":
     keya2 = [[3, 6, 4], [5, 15, 18], [17, 8, 5]]
     keyb2 = [8, 13, 1]
     c = encrypt(p, keya2, keyb2, 26)
+    print(c)
 
     print(decrypt(c, keya2, keyb2, 26))

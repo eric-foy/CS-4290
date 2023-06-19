@@ -11,5 +11,4 @@ decrypt Hill cipher
 zero matrix
 vigenere cipher
 substitiution cipher
-stream cipher
 product cipher

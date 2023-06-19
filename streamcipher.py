@@ -30,13 +30,13 @@ def encrypt(p, c, n):
         zm = 0
         for j in range(0, n):
             m = i - n + j
-            if c[j] == "0" and z[m] == "0":
+            if co[j] == "0" and z[m] == "0":
                 zm += 0
-            elif c[j] == "0" and z[m] == "1":
+            elif co[j] == "0" and z[m] == "1":
                 zm += 0
-            elif c[j] == "1" and z[m] == "0":
+            elif co[j] == "1" and z[m] == "0":
                 zm += 0
-            elif c[j] == "1" and z[m] == "1":
+            elif co[j] == "1" and z[m] == "1":
                 zm += 1
         zm %= 2
         z += str(zm)

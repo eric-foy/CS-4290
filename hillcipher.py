@@ -1,4 +1,5 @@
 import matrix_multiply as mm
+import matrix_invert as mi
 
 d = {
         'a': 0,
@@ -33,7 +34,7 @@ di = {}
 for i in d:
     di[d[i]] = i
 
-def hillcipher(k, n, p, Zn):
+def encrypt(k, n, p, Zn):
     o = ""
     for i in range(0, len(p), n):
         x = []
@@ -45,10 +46,25 @@ def hillcipher(k, n, p, Zn):
     o = o.upper()
     return o
 
+def decrypt(k, n, c, Zn):
+    o = ""
+    c = c.lower()
+    ki = mi.invert(k, Zn)
+    for i in range(0, len(c), n):
+        x = []
+        for j in c[i:i+n]:
+            x += [d[j]]
+        y = mm.mul([x], ki, Zn)
+        for j in y[0]:
+            o += di[j]
+    return o
+
 if __name__ == "__main__":
     k = [[11, 8], [3, 7]]
     p = "july"
     n = 2
     Zn = 26
-    c = hillcipher(k, n, p, Zn)
+    c = encrypt(k, n, p, Zn)
     print(c)
+
+    print(decrypt(k, n, c, Zn))

@@ -20,6 +20,8 @@ def encrypt(p, m, n):
     return o
 
 def decrypt(c, m, n):
+    if m*n > len(c):
+        c += "_" * (m*n - len(c))
     pm = []
     for i in range(0, n):
         y = []
@@ -27,7 +29,7 @@ def decrypt(c, m, n):
             y += [c[i*m + j]]
         pm += [y]
     
-    mp.out(pm)
+    #mp.out(pm)
     pm = mt.T(pm)
 
     o = ""
@@ -35,8 +37,19 @@ def decrypt(c, m, n):
         for j in i:
             o += j
     o = o.lower()
+    o = o.replace("_", "")
     return o
 
+def evenblocks(c):
+    cn = divisors.of(len(c))
+    cni = []
+    for i in cn:
+        cni += [int(len(c) / i)]
+
+    for i in range(0, len(cn)):
+        print()
+        print(cn[i], "by", cni[i])
+        print(decrypt(c, cn[i], cni[i]))
 
 if __name__ == "__main__":
     p = "cryptography"
@@ -48,12 +61,16 @@ if __name__ == "__main__":
     print(decrypt(c, m, n))
 
     c = "MYAMRARUYIQTENCTORAHROYWDSOYEOUARRGDERNOGW"
-    cn = divisors.of(len(c))
-    cni = []
-    for i in cn:
-        cni += [int(len(c) / i)]
+    cblock = int(len(c)/7)
+    o = ""
+    for i in range(0, len(c), cblock):
+        o += decrypt(c[i:i+cblock], 2, 3)
 
-    for i in range(0, len(cn)):
-        print()
-        print(cn[i], "by", cni[i])
-        print(decrypt(c, cn[i], cni[i]))
+    print(o)
+
+
+def bla(c):
+    for i in range(1, 42):
+        for j in range(1, 42):
+            if i*j < 80:
+                print(decrypt(c, i, j))

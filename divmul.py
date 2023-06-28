@@ -23,13 +23,11 @@ def divmul(a, b, n):
 
     binb = divpart(b)
     o = 1
-    p = 0
     c = a
     for i in binb:
         if i == "1":
             o = o * c
             o = o % n
-        p += 1
         c = c**2
         c = c % n
     return o

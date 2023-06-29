@@ -2,7 +2,7 @@ def out(p):
     o = ""
     for i in range(0, len(p)):
         if p[i] != 0:
-            if p[i] != 1:
+            if p[i] != 1 or i == 0:
                 o += str(p[i])
 
             if i == 1:
@@ -75,6 +75,8 @@ def test():
 
     print(add([1, 1], [2, 2, 2], 100))
     oadd([1, 1], [2, 2, 2], 100)
+
+    oadd([1, 1, 1], [0, 1, 1], 2)
 
     print(mul([1, 1, 1], [0, 1, 1], 100))
     omul([1, 1, 1], [0, 1, 1], 100)

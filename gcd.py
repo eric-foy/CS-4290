@@ -6,6 +6,9 @@ def gcd(a, b):
         a = b
         b = c
 
+    if (b == 0):
+        return a
+
     q = int(a / b)
     r = a % b
 

@@ -61,17 +61,24 @@ def omul(a, b, Zn):
     out(mul(a, b, Zn))
 
 def deg(a):
-    return len(a) - 1
+    d = len(a) - 1
+    for i in a[::-1]:
+        if i != 0:
+            return d
+        else:
+            d -= 1
 
 def test():
     a = [1, 2, 3, 0, 5]
     b = [1, 1]
+    print(deg(a))
+    print(deg(b))
     out(a)
 
     resize(a, b)
     print(a, b)
-    resize(b, a)
-    print(a, b)
+    print(deg(a))
+    print(deg(b))
 
     print(add([1, 1], [2, 2, 2], 100))
     oadd([1, 1], [2, 2, 2], 100)

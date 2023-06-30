@@ -41,7 +41,7 @@ def oadd(a, b, Zn):
 
 def mul(a, b, Zn):
     n = deg(a) + deg(b)
-    resize(a, b)
+    #resize(a, b)
 
     c = []
     for i in range(0, n+1):

@@ -14,17 +14,6 @@ def out(p):
     o = o[:-3]
     print(o)
 
-def resize(a, b):
-    if len(a) > len(b):
-        x = len(a) - len(b)
-        for i in range(0, x):
-            b.append(0)
-
-    if len(b) > len(a):
-        x = len(b) - len(a)
-        for i in range(0, x):
-            a.append(0)
-
 def largest(a, b):
     if len(a) > len(b):
         return len(a)
@@ -52,7 +41,6 @@ def oadd(a, b, Zn):
 
 def mul(a, b, Zn):
     n = deg(a) + deg(b)
-    #resize(a, b)
 
     c = []
     for i in range(0, n+1):
@@ -72,24 +60,12 @@ def omul(a, b, Zn):
     out(mul(a, b, Zn))
 
 def deg(a):
-    d = len(a) - 1
-    for i in a[::-1]:
-        if i != 0:
-            return d
-        else:
-            d -= 1
+    return len(a) - 1
 
 def test():
     a = [1, 2, 3, 0, 5]
     b = [1, 1]
-    print(deg(a))
-    print(deg(b))
     out(a)
-
-    resize(a, b)
-    print(a, b)
-    print(deg(a))
-    print(deg(b))
 
     print(add([1, 1], [2, 2, 2], 100))
     oadd([1, 1], [2, 2, 2], 100)

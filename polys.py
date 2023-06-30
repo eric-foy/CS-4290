@@ -25,12 +25,23 @@ def resize(a, b):
         for i in range(0, x):
             a.append(0)
 
+def largest(a, b):
+    if len(a) > len(b):
+        return len(a)
+    else:
+        return len(b)
+
 def add(a, b, Zn):
-    resize(a, b)
+    n = largest(a, b)
 
     c = []
-    for i in range(0, len(a)):
-        y = a[i] + b[i]
+    for i in range(0, n):
+        if i >= len(a):
+            y = b[i]
+        elif i >= len(b):
+            y = a[i]
+        else:
+            y = a[i] + b[i]
         y %= Zn
         c += [y]
 

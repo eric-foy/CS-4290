@@ -12,3 +12,7 @@ zero matrix
 vigenere cipher
 substitiution cipher
 product cipher
+
+generate irreducible polynomials
+polynomial congruence
+polynomial long divison

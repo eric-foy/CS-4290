@@ -1,4 +1,5 @@
 import invert
+import itertools
 
 def out(p):
     o = ""
@@ -63,10 +64,17 @@ def omul(a, b, Zn):
 
 # polynomial long division
 def div(a, b, Zn):
+    if (deg(b) == -1):
+        print("error: divide by zero")
+        return ([-1], [-1])
+    elif (deg(a) == -1):
+        return([0], [0])
+
     # a / b
-    print("long division:")
-    out(a)
-    out(b)
+    #print("long division:")
+    #out(a)
+    #out(b)
+
     o = [0]*(deg(a)-deg(b)+1)
     c = a
     while deg(b) <= deg(c):
@@ -103,6 +111,33 @@ def odiv(a, b, Zn):
     print("r = ")
     out(o[1])
 
+# irreducible polynomial generator
+def primes(n, Zn):
+    o = []
+    x = range(0, Zn)
+    y = [list(p) for p in itertools.product(x, repeat=(n+1))]
+    for i in y:
+        if deg(i) == n and coef(i) == 1:
+            prime = True
+            for j in range(2, n+1):
+                z = [list(p) for p in itertools.product(x, repeat=j)]
+                for k in z:
+                    if deg(i) > 0 and deg(k) > 0 and i != k:
+                        d = div(i, k, Zn)
+                        if deg(d[1]) == -1 and deg(d[0]) > 0:
+                            prime = False
+            if prime:
+                o += [i]
+
+    return o
+
+def oprimes(n, Zn):
+    p = primes(n, Zn)
+    print()
+    print(f"primes degree {n} mod {Zn}")
+    for i in p:
+        out(i)
+
 # -1 is negative infinity
 def deg(a):
     d = len(a) - 1
@@ -138,9 +173,24 @@ def test():
     odiv([1, 0, 1, 1, 3, 6], [6, 5, 3], 7)
     odiv([1, 1, 0, 0, 1, 1], [1, 0, 0, 1], 2)
     odiv([1, 0, 2, 1, 1, 1], [1, 0, 1], 3)
-    
-
     #div([0, 0, 0, 0, 0, 3], [2, 2, 0, 2], 5)
+
+    print()
+    oprimes(3, 3)
+    o = []
+    for i in primes(3, 3):
+        o += [i[::-1]]
+    o.sort()
+    for i in o:
+        print(i)
+
+    print()
+    o = []
+    for i in primes(4, 3):
+        o += [i[::-1]]
+    o.sort()
+    for i in o:
+        print(i)
 
 if __name__ == "__main__":
     test()

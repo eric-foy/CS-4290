@@ -35,5 +35,11 @@ def invert(a, n):
         print("not invertable")
         return -1
 
+def div(a, b, Zn):
+    bi = invert(b, Zn)
+    o = bi * a
+    o %= Zn
+    return o
+
 if __name__ == "__main__":
     print(invert(int(sys.argv[1]), int(sys.argv[2])))

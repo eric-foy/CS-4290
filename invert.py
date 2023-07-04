@@ -37,6 +37,8 @@ def invert(a, n):
 
 def div(a, b, Zn):
     bi = invert(b, Zn)
+    if (bi == -1):
+        return -1
     o = bi * a
     o %= Zn
     return o

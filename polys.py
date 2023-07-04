@@ -103,6 +103,7 @@ def odiv(a, b, Zn):
     print("r = ")
     out(o[1])
 
+# -1 is negative infinity
 def deg(a):
     d = len(a) - 1
     for i in a[::-1]:
@@ -110,6 +111,7 @@ def deg(a):
             return d
         else:
             d -= 1
+    return -1
 
 def coef(a):
     return a[deg(a)]
@@ -135,6 +137,7 @@ def test():
     odiv([0, 0, 0, 0, 0, 1], [1, 1, 0, 1], 2)
     odiv([1, 0, 1, 1, 3, 6], [6, 5, 3], 7)
     odiv([1, 1, 0, 0, 1, 1], [1, 0, 0, 1], 2)
+    odiv([1, 0, 2, 1, 1, 1], [1, 0, 1], 3)
     
 
     #div([0, 0, 0, 0, 0, 3], [2, 2, 0, 2], 5)

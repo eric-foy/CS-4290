@@ -178,6 +178,32 @@ def ofactors(a, Zn):
     for i in f:
         print(f"({sout(i[0])}) * ({sout(i[1])})")
 
+def evaluate(a, b, Zn, disp=False):
+    s = a[0]
+    for i in range(1, len(a)):
+        s += a[i] * b**i
+        s %= Zn
+    if disp:
+        print(f"f({b})={s}")
+    return s
+
+def roots(a, Zn):
+    o = []
+    for i in range(0, Zn):
+        b = evaluate(a, i, Zn)
+        if b == 0:
+            o += [i]
+    return o
+
+# root can be used multiple times
+# i.e. in Z2 x^2 + 1 = (x-1)(x-1)
+# we only print x^2 + 1 = (x-1)
+def oroots(a, Zn):
+    r = roots(a, Zn)
+    o = sout(a)+" = "
+    for i in r:
+        o += f"(x-{i})"
+    print(o)
 
 # -1 is negative infinity
 def deg(a):
@@ -236,6 +262,10 @@ def test():
     print()
     print(factors([1, 0, 1], 5))
     ofactors([1, 0, 1], 5)
+
+    print()
+    print(roots([1, 0, 1], 5))
+    oroots([1, 0, 1], 5)
 
 if __name__ == "__main__":
     test()

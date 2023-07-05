@@ -17,6 +17,22 @@ def out(p):
     o = o[:-3]
     print(o)
 
+def sout(p):
+    o = ""
+    for i in range(0, len(p)):
+        if p[i] != 0:
+            if p[i] != 1 or i == 0:
+                o += str(p[i])
+
+            if i == 1:
+                o += "x"
+            elif i > 1:
+                o += "x^"+str(i)
+
+            o += " + "
+    o = o[:-3]
+    return o
+
 def largest(a, b):
     if len(a) > len(b):
         return len(a)
@@ -125,8 +141,10 @@ def primes(n, Zn):
             for j in range(2, n+1):
                 z = [list(p) for p in itertools.product(x, repeat=j)]
                 for k in z:
+                    # only non trivial
                     if deg(i) > 0 and deg(k) > 0 and i != k:
                         d = div(i, k, Zn)
+                        # no remainer and non trivial quotent
                         if deg(d[1]) == -1 and deg(d[0]) > 0:
                             prime = False
             if prime:
@@ -140,6 +158,26 @@ def oprimes(n, Zn):
     print(f"primes degree {n} mod {Zn}")
     for i in p:
         out(i)
+
+def factors(a, Zn):
+    o = []
+    x = range(0, Zn)
+    for j in range(2, deg(a)+1):
+        z = [list(p) for p in itertools.product(x, repeat=j)]
+        for k in z:
+            # only non trivial
+            if deg(a) > 0 and deg(k) > 0 and a != k:
+                d = div(a, k, Zn)
+                # no remainer and non trivial quotent
+                if deg(d[1]) == -1 and deg(d[0]) > 0:
+                    o += [(k, d[0])]
+    return o
+
+def ofactors(a, Zn):
+    f = factors(a, Zn)
+    for i in f:
+        print(f"({sout(i[0])}) * ({sout(i[1])})")
+
 
 # -1 is negative infinity
 def deg(a):
@@ -194,6 +232,10 @@ def test():
     o.sort()
     for i in o:
         print(i)
+
+    print()
+    print(factors([1, 0, 1], 5))
+    ofactors([1, 0, 1], 5)
 
 if __name__ == "__main__":
     test()

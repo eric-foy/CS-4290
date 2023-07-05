@@ -42,28 +42,30 @@ def add(a, b, Zn):
 def oadd(a, b, Zn):
     out(add(a, b, Zn))
 
-def mul(a, b, Zn):
+def mul(a, b, Zn, disp=False):
     n = deg(a) + deg(b)
 
     c = []
     for i in range(0, n+1):
-        #print("x^"+str(i))
+        if disp:
+            print("x^"+str(i))
         y = 0
         for j in range(0, i+1):
             for k in range(0, i+1):
                 if j + k == i:
                     if j < len(a) and k < len(b):
-                        #print(f"    a{j}*b{k} = {a[j]}*{b[k]}")
+                        if disp:
+                            print(f"    a{j}*b{k} = {a[j]}*{b[k]}")
                         y += a[j] * b[k]
                         y %= Zn
         c += [y]
     return c
 
-def omul(a, b, Zn):
-    out(mul(a, b, Zn))
+def omul(a, b, Zn, disp=False):
+    out(mul(a, b, Zn, disp))
 
 # polynomial long division
-def div(a, b, Zn):
+def div(a, b, Zn, disp=False):
     if (deg(b) == -1):
         print("error: divide by zero")
         return ([-1], [-1])
@@ -71,9 +73,10 @@ def div(a, b, Zn):
         return([0], [0])
 
     # a / b
-    #print("long division:")
-    #out(a)
-    #out(b)
+    if disp:
+        print("long division:")
+        out(a)
+        out(b)
 
     o = [0]*(deg(a)-deg(b)+1)
     c = a
@@ -104,8 +107,8 @@ def div(a, b, Zn):
 
     return [o, c]
 
-def odiv(a, b, Zn):
-    o = div(a, b, Zn)
+def odiv(a, b, Zn, disp=False):
+    o = div(a, b, Zn, disp)
     print("q = ")
     out(o[0])
     print("r = ")
@@ -161,18 +164,18 @@ def test():
 
     oadd([1, 1, 1], [0, 1, 1], 2)
 
-    print(mul([1, 1, 1], [0, 1, 1], 100))
+    print(mul([1, 1, 1], [0, 1, 1], 100, True))
     omul([1, 1, 1], [0, 1, 1], 100)
 
     omul([1, 1, 1], [0, 1, 1], 2)
 
     print()
     print(div([0, 0, 0, 0, 0, 1], [1, 1, 0, 1], 5))
-    odiv([0, 0, 0, 0, 0, 1], [1, 1, 0, 1], 5)
-    odiv([0, 0, 0, 0, 0, 1], [1, 1, 0, 1], 2)
-    odiv([1, 0, 1, 1, 3, 6], [6, 5, 3], 7)
-    odiv([1, 1, 0, 0, 1, 1], [1, 0, 0, 1], 2)
-    odiv([1, 0, 2, 1, 1, 1], [1, 0, 1], 3)
+    odiv([0, 0, 0, 0, 0, 1], [1, 1, 0, 1], 5, True)
+    odiv([0, 0, 0, 0, 0, 1], [1, 1, 0, 1], 2, True)
+    odiv([1, 0, 1, 1, 3, 6], [6, 5, 3], 7, True)
+    odiv([1, 1, 0, 0, 1, 1], [1, 0, 0, 1], 2, True)
+    odiv([1, 0, 2, 1, 1, 1], [1, 0, 1], 3, True)
     #div([0, 0, 0, 0, 0, 3], [2, 2, 0, 2], 5)
 
     print()

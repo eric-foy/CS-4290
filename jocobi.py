@@ -1,3 +1,5 @@
+import sys
+
 def jocobi(a, b):
     if a > b:
         a = a % b
@@ -13,10 +15,12 @@ def jocobi(a, b):
     else:
         return int((-1)**(((a-1)/2)*((b-1)/2))) * jocobi(b, a)
 
-
-if __name__ == "__main__":
+def test():
     print(jocobi(51, 133))
     print(jocobi(31, 51))
     print(jocobi(2, 75))
     print(jocobi(19, 101))
     print(jocobi(54, 101))
+
+if __name__ == "__main__":
+    print(jocobi(int(sys.argv[1]), int(sys.argv[2])))

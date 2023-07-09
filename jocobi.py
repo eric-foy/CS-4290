@@ -16,7 +16,7 @@ def jocobi(a, b):
         return int((-1)**(((a-1)/2)*((b-1)/2))) * jocobi(b, a)
 
 def legendre(a, p):
-    e = (p - 1)/2
+    e = int((p - 1)/2)
     o = a**e
     o %= p
     return o

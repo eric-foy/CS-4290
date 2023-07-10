@@ -58,6 +58,25 @@ def add(a, b, Zn):
 def oadd(a, b, Zn):
     out(add(a, b, Zn))
 
+def sub(a, b, Zn):
+    n = largest(a, b)
+
+    c = []
+    for i in range(0, n):
+        if i >= len(a):
+            y = -b[i]
+        elif i >= len(b):
+            y = a[i]
+        else:
+            y = a[i] - b[i]
+        y %= Zn
+        c += [y]
+
+    return c
+
+def osub(a, b, Zn):
+    out(sub(a, b, Zn))
+    
 def mul(a, b, Zn, disp=False):
     n = deg(a) + deg(b)
 
@@ -114,6 +133,11 @@ def div(a, b, Zn, disp=False):
             d[i] = d[i] % Zn
         #out(d)
         e = []
+        if deg(c) != deg(d):
+            # leading term in c - leading term in d should = 0
+            # so, same length lists
+            print("long division size mismatch")
+            return [-1, -1]
         for i in range(0, deg(c)+1):
             y = c[i] - d[i]
             y %= Zn
@@ -285,6 +309,10 @@ def test():
     print(a)
     print(len(a))
     ofield(3, [1, 2, 0, 1])
+
+    print()
+    osub([1, 2, 0, 0, 0, 1], [0, 0, 2, 1], 5)
+    osub([0, 0, 2, 1], [1, 2, 0, 0, 0, 1], 5)
 
 if __name__ == "__main__":
     test()

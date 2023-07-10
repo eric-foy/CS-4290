@@ -205,6 +205,19 @@ def oroots(a, Zn):
         o += f"(x-{i})"
     print(o)
 
+# Zn / f(x)
+# f(x) must be irreducable for field
+# should be size p^deg(f)
+def field(Zn, f):
+    x = range(0, Zn)
+    o = [list(p) for p in itertools.product(x, repeat=(deg(f)))]
+    return o
+
+def ofield(Zn, f):
+    a = field(Zn, f)
+    for i in a:
+        out(i)
+
 # -1 is negative infinity
 def deg(a):
     d = len(a) - 1
@@ -266,6 +279,12 @@ def test():
     print()
     print(roots([1, 0, 1], 5))
     oroots([1, 0, 1], 5)
+
+    print()
+    a = field(3, [1, 2, 0, 1])
+    print(a)
+    print(len(a))
+    ofield(3, [1, 2, 0, 1])
 
 if __name__ == "__main__":
     test()

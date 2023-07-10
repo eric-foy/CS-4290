@@ -242,6 +242,37 @@ def ofield(Zn, f):
     for i in a:
         out(i)
 
+def gcd(f, g, Zn):
+    if deg(f) < deg(g):
+        h = f
+        f = g
+        g = h
+
+    if deg(g) == -1:
+        ci = invert.invert(coef(f), Zn)
+        return scale(ci, f, Zn)
+
+    d = div(f, g, Zn)
+    q = d[0]
+    r = d[1]
+
+    if deg(r) == -1:
+        ci = invert.invert(coef(g), Zn)
+        return scale(ci, g, Zn)
+
+    return gcd(g, r, Zn)
+
+def ogcd(f, g, Zn):
+    out(gcd(f, g, Zn))
+
+def scale(scalar, a, Zn):
+    o = []
+    for i in a:
+        x = scalar * i
+        x %= Zn
+        o += [x]
+    return o
+
 # -1 is negative infinity
 def deg(a):
     d = len(a) - 1
@@ -313,6 +344,19 @@ def test():
     print()
     osub([1, 2, 0, 0, 0, 1], [0, 0, 2, 1], 5)
     osub([0, 0, 2, 1], [1, 2, 0, 0, 0, 1], 5)
+
+    print()
+    print(gcd([1, 0, 0, 1], [2, 2], 3))
+    ogcd([1, 0, 0, 1], [2, 2], 3)
+
+    print(gcd([1, 2, 0, 0, 0, 1], [2, 1, 0, 1], 5))
+    ogcd([1, 2, 0, 0, 0, 1], [2, 1, 0, 1], 5)
+
+    print(gcd([2, 0, 1], [1, 2, 1], 3))
+    ogcd([2, 0, 1], [1, 2, 1], 3)
+
+    # test gcd(x^2+1, 0)
+    ogcd([1, 0, 1], [0, 0], 7)
 
 if __name__ == "__main__":
     test()

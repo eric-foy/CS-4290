@@ -323,6 +323,32 @@ def oegcd(f, g, Zn, disp=False):
     print(f"sn={sout(a[0])}")
     print(f"tn={sout(a[1])}")
 
+# inverse of g(x) in F[x]/f(x)
+def inv(g, F, f, check=False):
+    # check to see if f is irreducible
+    # may take a while
+    if check:
+        irr = primes(deg(f), F)
+        if f not in irr:
+            print("f not irreducible")
+
+    if not equal(gcd(f, g, F), [1]):
+        print(f"gcd({sout(f)}, {sout(g)}) != 1")
+        return [-1]
+
+    gi = egcd(f, g, F)[1]
+
+    # check g(1/g) == 1
+    x = div(mul(g, gi, F), f, F)[1]
+    if not equal(x, [1]):
+        print("g(1/g) != 1")
+        return [-1]
+
+    return gi
+
+def oinv(g, F, f, check=False):
+    out(inv(g, F, f, check))
+
 def scale(scalar, a, Zn):
     o = []
     for i in a:
@@ -419,6 +445,9 @@ def test():
     print()
     print(egcd([1, 2, 0, 0, 0, 1], [2, 1, 0, 1], 5))
     oegcd([1, 2, 0, 0, 0, 1], [2, 1, 0, 1], 5, True)
+
+    print()
+    oinv([2, 1, 0, 1], 3, [1, 2, 0, 0, 0, 1], True)
 
 if __name__ == "__main__":
     test()

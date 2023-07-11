@@ -39,6 +39,22 @@ def largest(a, b):
     else:
         return len(b)
 
+def equal(a, b):
+    n = largest(a, b)
+
+    for i in range(0, n):
+        if i >= len(a):
+            if b[i] != 0:
+                return False
+        elif i >= len(b):
+            if a[i] != 0:
+                return False
+        else:
+            if a[i] != b[i]:
+                return False
+
+    return True
+
 def add(a, b, Zn):
     n = largest(a, b)
 
@@ -265,6 +281,48 @@ def gcd(f, g, Zn):
 def ogcd(f, g, Zn):
     out(gcd(f, g, Zn))
 
+def extgcd(f, g, s0, s1, t0, t1, Zn, disp=False):
+    d = div(f, g, Zn)
+    q = d[0]
+    r = d[1]
+
+    # s2 = s0 - q*s1
+    s2 = sub(s0, mul(q, s1, Zn), Zn) 
+    # t2 = t0 - q*t1
+    t2 = sub(t0, mul(q, t1, Zn), Zn)
+
+    if disp:
+        print(f"({sout(f)})=({sout(q)})({sout(g)}) + ({sout(r)})")
+
+    if deg(r) == -1:
+        ci = invert.invert(coef(g), Zn)
+        return [scale(ci, s1, Zn), scale(ci, t1, Zn)]
+
+    return extgcd(g, r, s1, s2, t1, t2, Zn, disp)
+
+def egcd(f, g, Zn, disp=False):
+    if deg(f) < deg(g):
+        h = f
+        f = g
+        g = h
+
+    if deg(g) == -1:
+        print("divide by 0 polynomial")
+        return [0, 0]
+
+    o = extgcd(f, g, [1], [0], [0], [1], Zn, disp)
+    # check, coef-1(rn)(sn*f + tn*g) = gcd(f, g)
+    snf = mul(o[0], f, Zn)
+    tng = mul(o[1], g, Zn)
+    if not equal(add(snf, tng, Zn), gcd(f, g, Zn)):
+        print("coef-1(rn)(sn*f + tn*g) != gcd(f, g)")
+    return o
+
+def oegcd(f, g, Zn, disp=False):
+    a = egcd(f, g, Zn, disp)
+    print(f"sn={sout(a[0])}")
+    print(f"tn={sout(a[1])}")
+
 def scale(scalar, a, Zn):
     o = []
     for i in a:
@@ -357,6 +415,10 @@ def test():
 
     # test gcd(x^2+1, 0)
     ogcd([1, 0, 1], [0, 0], 7)
+
+    print()
+    print(egcd([1, 2, 0, 0, 0, 1], [2, 1, 0, 1], 5))
+    oegcd([1, 2, 0, 0, 0, 1], [2, 1, 0, 1], 5, True)
 
 if __name__ == "__main__":
     test()

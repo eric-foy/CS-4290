@@ -296,7 +296,7 @@ def extgcd(f, g, s0, s1, t0, t1, Zn, disp=False):
 
     if deg(r) == -1:
         ci = invert.invert(coef(g), Zn)
-        return [scale(ci, s1, Zn), scale(ci, t1, Zn)]
+        return (scale(ci, s1, Zn), scale(ci, t1, Zn))
 
     return extgcd(g, r, s1, s2, t1, t2, Zn, disp)
 
@@ -308,7 +308,7 @@ def egcd(f, g, Zn, disp=False):
 
     if deg(g) == -1:
         print("divide by 0 polynomial")
-        return [0, 0]
+        return (0, 0)
 
     o = extgcd(f, g, [1], [0], [0], [1], Zn, disp)
     # check, coef-1(rn)(sn*f + tn*g) = gcd(f, g)

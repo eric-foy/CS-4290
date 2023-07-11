@@ -121,7 +121,7 @@ def div(a, b, Zn, disp=False):
         print("error: divide by zero")
         return ([-1], [-1])
     elif (deg(a) == -1):
-        return([0], [0])
+        return ([0], [0])
 
     # a / b
     if disp:
@@ -143,7 +143,7 @@ def div(a, b, Zn, disp=False):
         co = invert.div(coef(c), coef(b), Zn)
         o[x] = co
         if (co == -1):
-            return [-1, -1]
+            return (-1, -1)
         for i in range(0, len(d)):
             d[i] = d[i]*co
             d[i] = d[i] % Zn
@@ -161,7 +161,7 @@ def div(a, b, Zn, disp=False):
         #out(e)
         c = e
 
-    return [o, c]
+    return (o, c)
 
 def odiv(a, b, Zn, disp=False):
     o = div(a, b, Zn, disp)

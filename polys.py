@@ -371,13 +371,14 @@ def deg(a):
 def coef(a):
     return a[deg(a)]
 
-def power(a, b, Zn):
+def power(a, b, Zn, f=None):
     #a**b
     c = a
     for i in range(1, b):
         c = mul(c, a, Zn)
+        if (f != None):
+            c = div(c, f, Zn)[1]
     return c
-
 
 def divpart(b):
     o = ""
@@ -395,7 +396,7 @@ def divpart(b):
     return o
 
 
-def divmul(a, b, n):
+def divmul(a, b, n, f=None):
     # a**b
     if (b == 0):
         return 1
@@ -406,8 +407,15 @@ def divmul(a, b, n):
     for i in binb:
         if i == "1":
             o = mul(o, c, n)
+            if (f != None):
+                o = div(o, f, n)[1]
         c = mul(c, c, n)
     return o
+
+def primitive(a, Zn, f):
+    Z = field(Zn, f)
+    x = []
+    y = power(a, 1, Zn)
 
 def test():
     a = [1, 2, 3, 0, 5]
@@ -493,6 +501,12 @@ def test():
     out(divmul([0, 0, 1], 3, 5))
     out(power([1, 1], 3, 5))
     out(divmul([1, 1], 3, 5))
+    out(power([0, 0, 1], 2, 5, [1, 1, 1]))
+    out(divmul([0, 0, 1], 2, 5, [1, 1, 1]))
+    out(power([0, 0, 1], 3, 5, [1, 1, 1]))
+    out(divmul([0, 0, 1], 3, 5, [1, 1, 1]))
+    out(power([0, 0, 1], 4, 5, [1, 1, 1]))
+    out(divmul([0, 0, 1], 4, 5, [1, 1, 1]))
 
 if __name__ == "__main__":
     test()

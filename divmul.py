@@ -32,7 +32,7 @@ def divmul(a, b, n):
         c = c % n
     return o
 
-def check(a, b, n):
+def power(a, b, n):
     # a**b
     c = a
     for i in range(1, b):
@@ -45,4 +45,4 @@ if __name__ == "__main__":
     b = int(sys.argv[2])
     n = int(sys.argv[3])
     print(divmul(a, b, n))
-    print(check(a, b, n))
+    print(power(a, b, n))

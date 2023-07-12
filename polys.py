@@ -412,10 +412,40 @@ def divmul(a, b, n, f=None):
         c = mul(c, c, n)
     return o
 
-def primitive(a, Zn, f):
-    Z = field(Zn, f)
+def primitive(a, Zn, f, disp=False):
+    Z0 = field(Zn, f)
+    Z = []
+    for i in Z0:
+        if not equal(i, [0]):
+            Z += [i]
+
     x = []
-    y = power(a, 1, Zn)
+    y = power(a, 1, Zn, f)
+    if disp:
+        print(f"{sout(a)} = {sout(y)}")
+    x += [y]
+    c = 2
+    while not equal(y, [1]):
+        y = power(a, c, Zn, f)
+        if disp:
+            print(f"({sout(a)})^{c} = {sout(y)}")
+        x += [y]
+        c += 1
+
+    if disp:
+        print(f"F={Z}")
+        print(f"x={x}")
+
+    for i in Z:
+        if not isin(i, x):
+            return False
+    return True
+
+def isin(a, F):
+    for i in F:
+        if equal(a, i):
+            return True
+    return False
 
 def test():
     a = [1, 2, 3, 0, 5]
@@ -507,6 +537,14 @@ def test():
     out(divmul([0, 0, 1], 3, 5, [1, 1, 1]))
     out(power([0, 0, 1], 4, 5, [1, 1, 1]))
     out(divmul([0, 0, 1], 4, 5, [1, 1, 1]))
+
+    print()
+    print(primitive([0, 1], 2, [1, 1, 1], True))
+    print(primitive([1, 1], 2, [1, 1, 1], True))
+    print(primitive([1], 2, [1, 1, 1], True))
+
+    print(primitive([0, 1], 3, [1, 0, 1], True))
+    print(primitive([1, 1], 3, [1, 0, 1], True))
 
 if __name__ == "__main__":
     test()

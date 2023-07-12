@@ -371,6 +371,44 @@ def deg(a):
 def coef(a):
     return a[deg(a)]
 
+def power(a, b, Zn):
+    #a**b
+    c = a
+    for i in range(1, b):
+        c = mul(c, a, Zn)
+    return c
+
+
+def divpart(b):
+    o = ""
+    pows = []
+    p = 0
+    while b != 1:
+        o += str(b % 2)
+        if b % 2 == 1:
+            pows += [2**p]
+        b = int(b / 2)
+        p += 1
+    o += str(b % 2)
+    if b % 2 == 1:
+        pows += [2**p]
+    return o
+
+
+def divmul(a, b, n):
+    # a**b
+    if (b == 0):
+        return 1
+
+    binb = divpart(b)
+    o = [1]
+    c = a
+    for i in binb:
+        if i == "1":
+            o = mul(o, c, n)
+        c = mul(c, c, n)
+    return o
+
 def test():
     a = [1, 2, 3, 0, 5]
     b = [1, 1]
@@ -448,7 +486,13 @@ def test():
     oegcd([1, 2, 0, 0, 0, 1], [2, 1, 0, 1], 5, True)
 
     print()
-    oinv([2, 1, 0, 1], 3, [1, 2, 0, 0, 0, 1], True)
+    oinv([2, 1, 0, 1], 3, [1, 2, 0, 0, 0, 1], False)
+
+    print()
+    out(power([0, 0, 1], 3, 5))
+    out(divmul([0, 0, 1], 3, 5))
+    out(power([1, 1], 3, 5))
+    out(divmul([1, 1], 3, 5))
 
 if __name__ == "__main__":
     test()

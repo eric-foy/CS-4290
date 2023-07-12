@@ -171,6 +171,7 @@ def odiv(a, b, Zn, disp=False):
     out(o[1])
 
 # irreducible polynomial generator
+# TODO use precomputed table for lookup
 def primes(n, Zn):
     o = []
     x = range(0, Zn)

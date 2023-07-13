@@ -11,7 +11,7 @@ def encode(x, b):
 def decode(x, b):
     o = []
     p = 0
-    while x > b:
+    while x >= b:
         o += [x % b]
         x = int(x / b)
     o += [x % b]

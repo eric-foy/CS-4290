@@ -80,7 +80,9 @@ def decrypt(n, a, msg, blk_s):
         x = divmul.divmul(x, a, n)
 
         y = basex.decode(x, 26)
-        if len(y) != blk_s-1:
+        if len(y) == blk_s-2:
+            y += [0]
+        elif len(y) != blk_s-1:
             print("block size mismatch")
         y.reverse()
         for j in y:
